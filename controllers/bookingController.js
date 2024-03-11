@@ -20,6 +20,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
           //price of the product and the details of the product in product-data
           unit_amount: tour.price * 100, //will be needing the amount in cents
           currency: 'usd',
+          // data related to product which is not related to price
           product_data: {
             name: `${tour.name} Tour`,
             images: [
