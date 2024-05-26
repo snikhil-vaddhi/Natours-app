@@ -71,7 +71,7 @@ exports.logout = (req, res) => {
   });
   res.status(200).json({ status: 'success' });
 };
-
+// protect middle
 exports.protect = catchAsync(async (req, res, next) => {
   let token;
   if (
