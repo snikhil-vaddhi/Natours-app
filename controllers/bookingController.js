@@ -3,7 +3,7 @@ const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
+// adding comment to test git past
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.tourID);
   const session = await stripe.checkout.sessions.create({
