@@ -18,6 +18,7 @@ const handleValidationErrorDB = (err) => {
   return new AppError(message, 400);
 };
 
+// token errors
 const handleJWTError = () =>
   new AppError('Invalid Token, Please login again', 401);
 
