@@ -1,5 +1,6 @@
 const AppError = require('../utils/appError');
 
+// handling cast error, duplicateField error and validation error from db
 const handleCastErrorDB = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
   return new AppError(message, 400);
