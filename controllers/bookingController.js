@@ -83,6 +83,8 @@ exports.webhookCheckout = (req, res, next) => {
   });
   next();
 };
+
+// rest of the factory functions
 exports.createBooking = factory.createOne(Booking);
 exports.getBooking = factory.getOne(Booking);
 exports.getAllBookings = factory.getAll(Booking);
