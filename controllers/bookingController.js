@@ -57,6 +57,7 @@ const createBookingCheckout = async (session) => {
   await Booking.create({ tour, user, price });
 };
 
+// stripe checkout using webhook
 exports.webhookCheckout = (req, res, next) => {
   const signature = req.headers['stripe-signature'];
 
