@@ -36,6 +36,7 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 };
 
+// signup middleware
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
