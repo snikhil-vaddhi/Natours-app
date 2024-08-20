@@ -12,7 +12,6 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD,
 );
 
-// console.log(process.env);
 mongoose.connect(DB).then(() => {
   console.log('DB connection successfull');
 });
@@ -28,7 +27,7 @@ const importData = async () => {
     await Tour.create(tours);
     await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
-    console.log('Data successfully loaded');
+    .log('Data successfully loaded');
   } catch (err) {
     console.log(err);
   }
