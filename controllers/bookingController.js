@@ -14,18 +14,20 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'Your Product Name',
-            description: 'Description of the product',
-            images: ['https://example.com/product-image.jpg'],
+            name: `${tour.name} Tour`,
+            description: tour.summary,
+            images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
           },
-          unit_amount: 2000, // Amount in cents
+          unit_amount: tour.price * 100, // Amount in cents
         },
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: 'https://yourdomain.com/success',
-    cancel_url: 'https://yourdomain.com/cancel',
+    success_url: `${req.protocol}://${req.get('host')}/`,
+    cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
+    customer_email: req.user.email,
+    client_reference_id: req.params.tourID,
   });
 
   res.status(200).json({
