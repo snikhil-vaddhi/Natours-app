@@ -1,9 +1,9 @@
 /* eslint-disable */
 import axios from 'axios';
 import { showAlert } from './alerts';
-const stripePublicKey =
-  'pk_test_51Ppdb1GoORHb9TiWy1pxEtpkAH0bZVmkQs0YJpB5WCjxLgHrtY53VlpFiK4COED8vv6UKaMsEjO8fk5Sj4hTWl1v00O1Z8PuKz';
-const stripe = typeof Stripe !== 'undefined' ? Stripe(stripePublicKey) : null;
+const stripe = Stripe(
+  'pk_test_51Ppdb1GoORHb9TiWy1pxEtpkAH0bZVmkQs0YJpB5WCjxLgHrtY53VlpFiK4COED8vv6UKaMsEjO8fk5Sj4hTWl1v00O1Z8PuKz',
+);
 
 export const bookTour = async (tourId) => {
   try {
