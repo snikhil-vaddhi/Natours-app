@@ -46,6 +46,7 @@ app.use(
           "'unsafe-inline'",
         ],
         'connect-src': [
+          "'self'",
           'ws://localhost:*',
           'ws://127.0.0.1:*',
           'http://127.0.0.1:*',
@@ -56,7 +57,7 @@ app.use(
         ],
       },
     },
-    crossOriginResourcePolicy: false,
+    crossOriginResourcePolicy: true,
   }),
 );
 if (process.env.NODE_ENV === 'development') {
