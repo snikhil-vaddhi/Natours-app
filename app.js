@@ -20,7 +20,8 @@ const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
-app.enable('trust proxy');
+
+app.set('trust proxy', 1);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -69,6 +70,8 @@ const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour',
+  keyGenerator: (req) => req.ip, // Default IP-based key generator
+  skipFailedRequests: true, // Don't count failed requests (like 404s)
 });
 app.use('/api', limiter);
 
