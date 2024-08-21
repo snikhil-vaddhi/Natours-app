@@ -32,3 +32,11 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
+
+// HEROKU SPECIFIC CONFIGURATION
+process.on('SIGTERM', () => {
+  console.log('SIGTERN RECEIVED> Shutting down gracefully');
+  server.close(() => {
+    console.log('Process terminated');
+  });
+});
