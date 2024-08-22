@@ -14,14 +14,28 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     customer_email: req.user.email,
     client_reference_id: req.params.tourID,
     line_items: [
+      // {
+      //   name: `${tour.name} Tour`,
+      //   description: tour.summary,
+      //   images: [
+      //     `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+      //   ],
+      //   price: tour.price * 100,
+      //   currency: 'usd',
+      //   quantity: 1,
+      // },
       {
-        name: `${tour.name} Tour`,
-        description: tour.summary,
-        images: [
-          `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
-        ],
-        price: tour.price * 100,
-        currency: 'usd',
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `${tour.name} Tour`,
+            description: tour.summary,
+            images: [
+              `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+            ],
+          },
+          unit_amount: tour.price * 100, // Amount in cents
+        },
         quantity: 1,
       },
     ],
@@ -46,6 +60,7 @@ const createBookingCheckout = async (session) => {
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
   const price = session.display_items[0].price / 100;
+  console.log(tour, user, price);
   await Booking.create({ tour, user, price });
 };
 
